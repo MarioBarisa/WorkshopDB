@@ -38,7 +38,7 @@ WorkshopDB is a Spring Boot application designed to help mechanics manage their 
 > 📌 Projekt izrađen za kolegij **"Programiranje na Java virtualnom stroju"**
 > **Student:** Mario Bariša, ak. god. 25/26 @ FIPU / UNIPU
 >
-> ⚠️ **Status: Work in Progress (WIP)** — aplikacija je u aktivnom razvoju i podložna je promjenama.
+> ⚠️ **Status: Work in Progress (WIP)** 
 
 ## O projektu
 
