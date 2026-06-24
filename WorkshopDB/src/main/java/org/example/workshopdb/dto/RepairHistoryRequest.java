@@ -9,9 +9,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * DTO for {@link org.example.workshopdb.entity.RepairHistory}
- */
 @Value
 public class RepairHistoryRequest implements Serializable {
     @NotNull(message = "You must provide date.")
@@ -23,4 +20,8 @@ public class RepairHistoryRequest implements Serializable {
     @NotNull
     @Min(message = "Price needs to be positive.", value = 0)
     BigDecimal price;
+    @NotNull(message = "You must provide Auto ID.")
+    Integer autoID;
+    @NotNull(message = "You must provide Mechanic ID.")
+    Integer mechanicID;
 }

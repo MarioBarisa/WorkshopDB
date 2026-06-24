@@ -8,7 +8,6 @@ import org.example.workshopdb.service.auto;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,11 +39,12 @@ class autoService implements auto {
         noviAuto.setMake(req.getMake());
         noviAuto.setModel(req.getModel());
         noviAuto.setKW(req.getKW());
-        noviAuto.setClient(clientRepository.findByID(req.getClientID()));
+        noviAuto.setClient(clientRepository.findById(req.getClientID()).orElse(null));
         noviAuto.setMileage((req.getMileage()));
         noviAuto.setYear(req.getYear());
         noviAuto.setVin(req.getVin());
         noviAuto.setEnginetype(req.getEnginetype());
+        noviAuto.setEngine(req.getEngine());
 
         return autoRepository.save(noviAuto);
     }
@@ -53,23 +53,24 @@ class autoService implements auto {
     public Auto update(AutoRequest req, Integer id) {
         Optional<Auto> provjera = autoRepository.findById(id);
         if(provjera.isPresent()){
-                Auto noviAuto = new Auto();
-                noviAuto.setMake(req.getMake());
-                noviAuto.setModel(req.getModel());
-                noviAuto.setKW(req.getKW());
-                noviAuto.setClient(clientRepository.findByID(req.getClientID()));
-                noviAuto.setMileage((req.getMileage()));
-                noviAuto.setYear(req.getYear());
-                noviAuto.setVin(req.getVin());
-                noviAuto.setEnginetype(req.getEnginetype());
+            Auto postojeciAuto = provjera.get();
+            postojeciAuto.setMake(req.getMake());
+            postojeciAuto.setModel(req.getModel());
+            postojeciAuto.setKW(req.getKW());
+            postojeciAuto.setClient(clientRepository.findById(req.getClientID()).orElse(null));
+            postojeciAuto.setMileage(req.getMileage());
+            postojeciAuto.setYear(req.getYear());
+            postojeciAuto.setVin(req.getVin());
+            postojeciAuto.setEnginetype(req.getEnginetype());
+            postojeciAuto.setEngine(req.getEngine());
 
-                return  autoRepository.save(noviAuto);
+            return autoRepository.save(postojeciAuto);
         }
         return null;
     }
 
     @Override
     public void delete(Integer id) {
-        autoRepository.deleteAllById(Collections.singleton(id));
+        autoRepository.deleteById(id);
     }
 }
