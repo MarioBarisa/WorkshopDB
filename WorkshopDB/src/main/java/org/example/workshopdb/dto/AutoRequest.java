@@ -3,6 +3,7 @@ package org.example.workshopdb.dto;
 import jakarta.validation.constraints.*;
 import lombok.Value;
 import org.example.workshopdb.entity.Auto;
+import org.example.workshopdb.entity.Client;
 
 import java.io.Serializable;
 
@@ -36,4 +37,9 @@ public class AutoRequest implements Serializable {
     @Min(0L)
     @PositiveOrZero(message = "Mileage cant be negative")
     Integer mileage;
+
+    @NotNull(message = "You need to provide Client ID.")
+    @Min(0L)
+    @PositiveOrZero(message = "Client ID cant be negative")
+    Integer clientID;
 }
