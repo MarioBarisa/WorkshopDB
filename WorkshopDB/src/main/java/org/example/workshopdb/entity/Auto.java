@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Auto", schema = "WorkshopDB", indexes = {@Index(name = "client_id",
+@Table(name = "auto", schema = "WorkshopDB", indexes = {@Index(name = "client_id",
         columnList = "client_id")}, uniqueConstraints = {@UniqueConstraint(name = "VIN",
         columnNames = {"VIN"})})
 public class Auto {

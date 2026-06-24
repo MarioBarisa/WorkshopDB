@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Client", schema = "WorkshopDB", uniqueConstraints = {@UniqueConstraint(name = "email",
+@Table(name = "client", schema = "WorkshopDB", uniqueConstraints = {@UniqueConstraint(name = "email",
         columnNames = {"email"})})
 public class Client {
     @Id
