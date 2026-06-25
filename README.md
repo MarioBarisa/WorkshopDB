@@ -27,7 +27,7 @@ WorkshopDB is a Spring Boot application designed to help mechanics manage their 
 
 ### Prerequisites
 
-- Java 21 (JDK)
+- Java 17 (JDK)
 - Maven
 - MySQL server (local or remote)
 
@@ -62,7 +62,7 @@ WorkshopDB je Spring Boot aplikacija namijenjena automehaničarima za jednostavn
 
 ### Preduvjeti
 
-- Java 21 (JDK)
+- Java 17 (JDK)
 - Maven
 - MySQL server (lokalno ili remote)
 
