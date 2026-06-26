@@ -4,6 +4,7 @@ import org.example.workshopdb.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
@@ -15,6 +16,10 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     List<Client> findByNameLike(String name);
 
     Client findByEmailLike(String email);
+
+    List<Client> findByNameContainingIgnoreCase(String name);
+
+    Optional<Client> findByEmail(String email);
 
 
 }

@@ -1,6 +1,7 @@
 package org.example.workshopdb.repository;
 
 import org.example.workshopdb.entity.Auto;
+import org.example.workshopdb.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 
@@ -20,6 +21,13 @@ public interface AutoRepository extends JpaRepository<Auto, Integer> {
     List<Auto> findByClient_Name(String name);
 
     List<Auto> findByClient_Email(String email);
+
+    List<Client> findByClientId(Integer clientId);
+
+    List<Auto> findByMakeContainingIgnoreCaseOrModelContainingIgnoreCase(String make, String model);
+
+    List<Auto> findByClient_NameContainingIgnoreCase(String clientName);
+
 
 
 }

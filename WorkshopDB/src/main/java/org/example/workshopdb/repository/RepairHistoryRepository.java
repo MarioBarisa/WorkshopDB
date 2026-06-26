@@ -12,4 +12,10 @@ public interface RepairHistoryRepository extends JpaRepository<RepairHistory, In
 
     List<RepairHistory> findByAuto_Client_Id(Integer id);
 
+    List<RepairHistory> findByAuto_Client_NameContainingIgnoreCase(String clientName);
+
+    List<RepairHistory> findByAutoId(Integer autoId);
+
+    List<RepairHistory> findByMechanicId(Integer mechanicId);
+
 }
