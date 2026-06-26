@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: common-head}">
+    <title>Klijenti</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/layout :: main-nav}"></div>
+<div th:replace="~{fragments/layout :: flash-message}"></div>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3">Clients</h1>
+        <a th:href="@{/clients/new}" class="btn btn-primary">+ New Client</a>
+    </div>
+
+    <form method="get" th:action="@{/clients}" class="mb-3">
+        <div class="input-group" style="max-width: 400px;">
+            <input type="text" name="search" class="form-control"
+                   placeholder="Search by name..."
+                   th:value="${search}">
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+            <a th:href="@{/clients}" class="btn btn-outline-danger"
+               th:if="${search != null and !#strings.isEmpty(search)}">✕</a>
+        </div>
+    </form>
+
+    <div th:if="${#lists.isEmpty(clients)}" class="alert alert-info">
+        No clients found.
+    </div>
+
+    <div th:unless="${#lists.isEmpty(clients)}" class="card shadow-sm">
+        <table class="table table-hover mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Ime</th>
+                    <th>Telefon</th>
+                    <th>Email</th>
+                    <th>Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="client, stat : ${clients}">
+                    <td th:text="${stat.count}" class="text-muted">1</td>
+                    <td>
+                        <a th:href="@{/clients/{id}(id=${client.id})}"
+                           th:text="${client.name}"
+                           class="fw-semibold text-decoration-none">Namee</a>
+                    </td>
+                    <td th:text="${client.telnumber ?: '-'}">091...</td>
+                    <td th:text="${client.email ?: '-'}">mail@...</td>
+                    <td>
+                        <a th:href="@{/clients/{id}/edit(id=${client.id})}"
+                           class="btn btn-sm btn-outline-primary me-1">Edit</a>
+                        <form th:action="@{/clients/{id}/delete(id=${client.id})}"
+                              method="post" style="display:inline;"
+                              onsubmit="return confirm('Delete client?')">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
