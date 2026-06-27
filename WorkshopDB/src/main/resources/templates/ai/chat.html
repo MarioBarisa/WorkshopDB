@@ -9,34 +9,61 @@
 
 <div class="container mt-4" style="max-width: 800px;">
     <div class="card shadow-sm">
-        <div class="card-header bg-warning text-dark">
+        <div class="card-header bg-primary-subtle text-dark">
             <h4 class="mb-0">AI Assistant — WorkshopDB</h4>
         </div>
         <div class="card-body">
             <p class="text-muted">
-               Ask anything about your WorkshopDB.:
+                Ask anything about your WorkshopDB.:
                 <em>"What cars does a customer X have?"</em> ili
                 <em>"What mechanic worked on car X?"</em>
             </p>
 
+            <h5> Enable according toggles to give AI access to specific database queries. </h5>
             <form th:action="@{/ai}" method="post">
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Your question</label>
-                    <textarea name="question" rows="3"
-                              class="form-control"
-                              placeholder="Upiši pitanje..."
-                              th:text="${question}"></textarea>
+                <div class="mb-3 d-flex gap-3 flex-wrap">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="autos" id="togAutos"
+                               th:checked="${autos}">
+                        <label class="form-check-label" for="togAutos">Cars</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="mechanics" id="togMech"
+                               th:checked="${mechanics}">
+                        <label class="form-check-label" for="togMech">Mechanics</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="repairs" id="togRepairs"
+                               th:checked="${repairs}">
+                        <label class="form-check-label" for="togRepairs">Reapir history</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="clients" id="togClients"
+                               th:checked="${clients}">
+                        <label class="form-check-label" for="togClients">Clients</label>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-warning">Send →</button>
-            </form>
 
-            <!-- Odgovor — prikaže se samo kada postoji -->
-            <div th:if="${answer != null and !#strings.isEmpty(answer)}"
-                 class="mt-4 p-3 bg-white border rounded">
-                <h6 class="text-muted mb-2">Odgovor:</h6>
-                <!-- th:utext renderira HTML — koristi samo za trusted sadržaj -->
-                <p th:text="${answer}" class="mb-0"></p>
-            </div>
+                <!-- Pitanje -->
+
+                <form th:action="@{/ai}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Your question</label>
+                        <textarea name="question" rows="3"
+                                  class="form-control"
+                                  placeholder="Upiši pitanje..."
+                                  th:text="${question}"></textarea>
+                    </div>
+                    <button type="submit" class="btn bg-primary-subtle">Send →</button>
+                </form>
+
+                <!-- Odgovor — prikaže se samo kada postoji -->
+                <div th:if="${answer != null and !#strings.isEmpty(answer)}"
+                     class="mt-4 p-3 bg-white border rounded">
+                    <p class="text-primary fw-bold "> Ai CAN MAKE MISTAKES, always double check!  </p>
+                    <h6 class="text-muted mb-2">Answer:</h6>
+                    <p th:text="${answer}" class="mb-0"></p>
+                </div>
 
         </div>
     </div>
