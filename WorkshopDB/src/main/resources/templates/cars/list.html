@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments/layout :: common-head}">
-    <title>Clients</title>
+    <title>Cars</title>
 </head>
 <body class="bg-light">
 
@@ -10,52 +10,56 @@
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3">Clients</h1>
-        <a th:href="@{/clients/new}" class="btn btn-primary">+ New Client</a>
+        <h1 class="h3">Cars</h1>
+        <a th:href="@{/cars/new}" class="btn btn-primary">+ New Car</a>
     </div>
 
-    <form method="get" th:action="@{/clients}" class="mb-3">
+    <form method="get" th:action="@{/cars}" class="mb-3">
         <div class="input-group" style="max-width: 400px;">
             <input type="text" name="search" class="form-control"
-                   placeholder="Search by name..."
+                   placeholder="Search by make or model..."
                    th:value="${search}">
             <button type="submit" class="btn btn-outline-secondary">Search</button>
-            <a th:href="@{/clients}" class="btn btn-outline-danger"
+            <a th:href="@{/cars}" class="btn btn-outline-danger"
                th:if="${search != null and !#strings.isEmpty(search)}">✕</a>
         </div>
     </form>
 
-    <div th:if="${#lists.isEmpty(clients)}" class="alert alert-info">
-        No clients found.
+    <div th:if="${#lists.isEmpty(autos)}" class="alert alert-info">
+        No cars found.
     </div>
 
-    <div th:unless="${#lists.isEmpty(clients)}" class="card shadow-sm">
+    <div th:unless="${#lists.isEmpty(autos)}" class="card shadow-sm">
         <table class="table table-hover mb-0">
             <thead class="table-dark">
                 <tr>
                     <th>#</th>
-                    <th>Ime</th>
-                    <th>Telefon</th>
-                    <th>Email</th>
-                    <th>Akcije</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>VIN</th>
+                    <th>Year</th>
+                    <th>Engine</th>
+                    <th>Mileage</th>
+                    <th>Owner</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="client, stat : ${clients}">
+                <tr th:each="auto, stat : ${autos}">
                     <td th:text="${stat.count}" class="text-muted">1</td>
+                    <td th:text="${auto.make}">Make</td>
+                    <td th:text="${auto.model}">Model</td>
+                    <td th:text="${auto.vin}">VIN</td>
+                    <td th:text="${auto.year}">2024</td>
+                    <td th:text="${auto.engine}">Engine</td>
+                    <td th:text="${auto.mileage ?: '-'}">10000</td>
+                    <td th:text="${auto.client.name}">Owner</td>
                     <td>
-                        <a th:href="@{/clients/{id}(id=${client.id})}"
-                           th:text="${client.name}"
-                           class="fw-semibold text-decoration-none">Namee</a>
-                    </td>
-                    <td th:text="${client.telnumber ?: '-'}">091...</td>
-                    <td th:text="${client.email ?: '-'}">mail@...</td>
-                    <td>
-                        <a th:href="@{/clients/{id}/edit(id=${client.id})}"
+                        <a th:href="@{/cars/{id}/edit(id=${auto.id})}"
                            class="btn btn-sm btn-outline-primary me-1">Edit</a>
-                        <form th:action="@{/clients/{id}/delete(id=${client.id})}"
+                        <form th:action="@{/cars/{id}/delete(id=${auto.id})}"
                               method="post" style="display:inline;"
-                              onsubmit="return confirm('Delete client?')">
+                              onsubmit="return confirm('Delete car?')">
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                         </form>
                     </td>

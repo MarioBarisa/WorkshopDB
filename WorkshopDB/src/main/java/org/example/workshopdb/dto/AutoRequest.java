@@ -28,7 +28,7 @@ public class AutoRequest implements Serializable {
     @NotNull(message = "You need to provide the kW of the engine.")
     @Min(message = "0", value = 0L)
     @Max(message = "kw cant be higher than 1000", value = 1000)
-    Integer kW;
+    Integer powerKW;
     @NotNull
     @Min(message = "There are no cars older than 1900.", value = 1900)
     @Positive(message = "Year can only be positive.")

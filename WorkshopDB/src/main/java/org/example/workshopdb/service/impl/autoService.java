@@ -38,7 +38,7 @@ class autoService implements auto {
         Auto noviAuto = new Auto();
         noviAuto.setMake(req.getMake());
         noviAuto.setModel(req.getModel());
-        noviAuto.setKW(req.getKW());
+        noviAuto.setPowerKW(req.getPowerKW());
         noviAuto.setClient(clientRepository.findById(req.getClientID()).orElse(null));
         noviAuto.setMileage((req.getMileage()));
         noviAuto.setYear(req.getYear());
@@ -56,7 +56,7 @@ class autoService implements auto {
             Auto postojeciAuto = provjera.get();
             postojeciAuto.setMake(req.getMake());
             postojeciAuto.setModel(req.getModel());
-            postojeciAuto.setKW(req.getKW());
+            postojeciAuto.setPowerKW(req.getPowerKW());
             postojeciAuto.setClient(clientRepository.findById(req.getClientID()).orElse(null));
             postojeciAuto.setMileage(req.getMileage());
             postojeciAuto.setYear(req.getYear());

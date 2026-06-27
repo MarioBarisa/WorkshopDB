@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: common-head}">
+    <title th:text="${formTitle}">Repair Form</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/layout :: main-nav}"></div>
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0" th:text="${formTitle}">Repair Form</h4>
+        </div>
+        <div class="card-body">
+
+            <form th:action="@{${formAction}}"
+                  th:object="${repairForm}"
+                  method="post">
+
+                <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+                    <ul class="mb-0">
+                        <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+                    </ul>
+                </div>
+
+                <div class="mb-3">
+                    <label for="autoId" class="form-label">Auto <span class="text-danger">*</span></label>
+                    <select id="autoId" class="form-control"
+                            th:field="*{autoId}"
+                            th:errorclass="is-invalid">
+                        <option value="">-- Select auto --</option>
+                        <option th:each="a : ${autos}"
+                                th:value="${a.id}"
+                                th:text="${a.make + ' ' + a.model + ' (' + a.client.name + ')'}"></option>
+                    </select>
+                    <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('autoId')}"
+                         th:errors="*{autoId}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="mechanicId" class="form-label">Mechanic <span class="text-danger">*</span></label>
+                    <select id="mechanicId" class="form-control"
+                            th:field="*{mechanicId}"
+                            th:errorclass="is-invalid">
+                        <option value="">-- Select mechanic --</option>
+                        <option th:each="m : ${mechanics}"
+                                th:value="${m.id}"
+                                th:text="${m.name}"></option>
+                    </select>
+                    <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('mechanicId')}"
+                         th:errors="*{mechanicId}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date <span class="text-danger">*</span></label>
+                    <input id="date" type="date" class="form-control"
+                           th:field="*{date}"
+                           th:errorclass="is-invalid">
+                    <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('date')}"
+                         th:errors="*{date}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                    <input id="title" type="text" class="form-control"
+                           th:field="*{title}"
+                           th:errorclass="is-invalid">
+                    <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('title')}"
+                         th:errors="*{title}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="about" class="form-label">About</label>
+                    <textarea id="about" rows="3" class="form-control"
+                              th:field="*{about}"
+                              th:errorclass="is-invalid"></textarea>
+                    <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('about')}"
+                         th:errors="*{about}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
+                    <input id="price" type="number" step="0.01" class="form-control"
+                           th:field="*{price}"
+                           th:errorclass="is-invalid">
+                    <div class="invalid-feedback"
+                         th:if="${#fields.hasErrors('price')}"
+                         th:errors="*{price}">
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a th:href="@{/repairs}" class="btn btn-outline-secondary">Abort</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

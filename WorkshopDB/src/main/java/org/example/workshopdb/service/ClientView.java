@@ -38,7 +38,7 @@ public class ClientView {
     public void save(ClientForm clientForm){
         Client c = new Client();
         c.setName(clientForm.getName());
-        c.setTelnumber(c.getTelnumber());
+        c.setTelnumber(clientForm.getTelnumber());
         c.setEmail(clientForm.getEmail());
         clientRepository.save(c);
     }

@@ -22,7 +22,7 @@ public interface AutoRepository extends JpaRepository<Auto, Integer> {
 
     List<Auto> findByClient_Email(String email);
 
-    List<Client> findByClientId(Integer clientId);
+    List<Auto> findByClient_Id(Integer clientId);
 
     List<Auto> findByMakeContainingIgnoreCaseOrModelContainingIgnoreCase(String make, String model);
 

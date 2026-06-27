@@ -37,7 +37,7 @@ public class Auto {
     private String engine;
 
     @Column(name = "kW")
-    private Integer kW;
+    private Integer powerKW;
 
     @Column(name = "year")
     private Integer year;

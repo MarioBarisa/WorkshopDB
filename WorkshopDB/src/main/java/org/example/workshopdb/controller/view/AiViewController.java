@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/ai")
-class AiViewController {
+public class AiViewController {
 
     private  final OpenRouterService openRouterService;
 

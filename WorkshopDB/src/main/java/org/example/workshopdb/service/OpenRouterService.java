@@ -25,18 +25,18 @@ public class OpenRouterService {
     public String ask(String question){
         Map<String, Object> body = Map.of(
                 "model", "openrouter/free",
-                "messeges", List.of(
+                "messages", List.of(
                         Map.of("role", "system", "content",
                                 "Ti si asistent u aplikaciji WorkshopDB koja ima za cilj pomoci mehanicarima u pračenju klijenta i njihovih automobila te sve vezano uz navedeno. " +
                                         "Uvjek odgovaraj na jeziku na kojem ti se postavi pitanje."+"Profesionaln i odgovori bez korištenja slang-a."
                         +"Odgovaraš na pitanja o klijentima, automobilima i popravcima."),
-                        Map.of("role", "user", "content", "question")
+                        Map.of("role", "user", "content", question)
                 )
         );
 
         Map<?, ?> response = webClient.post()
                 .uri(url)
-                .header("Authorization", "Bearer"+apiKey)
+                .header("Authorization", "Bearer " + apiKey)
                 .header("Content-Type", "application/json")
                 .bodyValue(body)
                 .retrieve()

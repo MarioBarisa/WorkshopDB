@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: common-head}">
+    <title>Mechanics</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/layout :: main-nav}"></div>
+<div th:replace="~{fragments/layout :: flash-message}"></div>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3">Mechanics</h1>
+        <a th:href="@{/mechanics/new}" class="btn btn-primary">+ New Mechanic</a>
+    </div>
+
+    <div th:if="${#lists.isEmpty(mechanics)}" class="alert alert-info">
+        No mechanics found.
+    </div>
+
+    <div th:unless="${#lists.isEmpty(mechanics)}" class="card shadow-sm">
+        <table class="table table-hover mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="m, stat : ${mechanics}">
+                    <td th:text="${stat.count}" class="text-muted">1</td>
+                    <td th:text="${m.name}">Name</td>
+                    <td th:text="${m.phone ?: '-'}">091...</td>
+                    <td>
+                        <a th:href="@{/mechanics/{id}/edit(id=${m.id})}"
+                           class="btn btn-sm btn-outline-primary me-1">Edit</a>
+                        <form th:action="@{/mechanics/{id}/delete(id=${m.id})}"
+                              method="post" style="display:inline;"
+                              onsubmit="return confirm('Delete mechanic?')">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

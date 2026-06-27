@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments/layout :: common-head}">
-    <title th:text="${formTitle}">Forma</title>
+    <title th:text="${formTitle}">Mechanic Form</title>
 </head>
 <body class="bg-light">
 
@@ -10,13 +10,12 @@
 <div class="container mt-4" style="max-width: 600px;">
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
-            <h4 class="mb-0" th:text="${formTitle}">Form</h4>
+            <h4 class="mb-0" th:text="${formTitle}">Mechanic Form</h4>
         </div>
         <div class="card-body">
 
-            <!-- th:action koristi @{} expression, th:object veže form-backing objekt -->
             <form th:action="@{${formAction}}"
-                  th:object="${clientForm}"
+                  th:object="${mechanicForm}"
                   method="post">
 
                 <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
@@ -26,11 +25,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Ime <span class="text-danger">*</span></label>
-                    <!-- th:field generira id, name i value automatski -->
-                    <!-- th:errorclass dodaje CSS klasu ako postoji greška na polju -->
-                    <input id="name" type="text"
-                           class="form-control"
+                    <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                    <input id="name" type="text" class="form-control"
                            th:field="*{name}"
                            th:errorclass="is-invalid">
                     <div class="invalid-feedback"
@@ -40,32 +36,19 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="telnumber" class="form-label">Telephone</label>
-                    <input id="telnumber" type="text"
-                           class="form-control"
-                           th:field="*{telnumber}"
+                    <label for="phone" class="form-label">Phone</label>
+                    <input id="phone" type="text" class="form-control"
+                           th:field="*{phone}"
                            th:errorclass="is-invalid">
                     <div class="invalid-feedback"
-                         th:if="${#fields.hasErrors('telnumber')}"
-                         th:errors="*{telnumber}">
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" type="email"
-                           class="form-control"
-                           th:field="*{email}"
-                           th:errorclass="is-invalid">
-                    <div class="invalid-feedback"
-                         th:if="${#fields.hasErrors('email')}"
-                         th:errors="*{email}">
+                         th:if="${#fields.hasErrors('phone')}"
+                         th:errors="*{phone}">
                     </div>
                 </div>
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <a th:href="@{/clients}" class="btn btn-outline-secondary">Abort</a>
+                    <a th:href="@{/mechanics}" class="btn btn-outline-secondary">Abort</a>
                 </div>
             </form>
 

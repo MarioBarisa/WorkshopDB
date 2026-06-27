@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
+
 
 import java.io.Serializable;
 
@@ -32,7 +32,7 @@ public class AutoForm implements Serializable {
 
     String engine;
 
-    Integer kW;
+    Integer powerKW;
 
     @Min(1900)
     Integer year;

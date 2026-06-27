@@ -3,6 +3,7 @@ package org.example.workshopdb.controller.view;
 import jakarta.validation.Valid;
 import org.example.workshopdb.dto.ClientForm;
 import org.example.workshopdb.entity.Client;
+import org.example.workshopdb.repository.AutoRepository;
 import org.example.workshopdb.service.ClientView;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +13,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/clients")
-class ClientViewController {
+public class ClientViewController {
 
     private final ClientView service;
+    private final AutoRepository autoRepository;
 
-    ClientViewController(ClientView service) {
+    ClientViewController(ClientView service, AutoRepository autoRepository) {
         this.service = service;
+        this.autoRepository = autoRepository;
     }
 
     // GET /clients?search=Pero
@@ -32,6 +35,7 @@ class ClientViewController {
     @GetMapping("/{id}")
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("client", service.findByID(id));
+        model.addAttribute("autos", autoRepository.findByClient_Id(id));
         return "clients/details";
     }
 
