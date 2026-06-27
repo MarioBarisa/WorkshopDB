@@ -29,5 +29,5 @@ public interface AutoRepository extends JpaRepository<Auto, Integer> {
     List<Auto> findByClient_NameContainingIgnoreCase(String clientName);
 
 
-
+    List<Auto> findAllByMake(String make);
 }

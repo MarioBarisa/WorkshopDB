@@ -76,7 +76,7 @@ public class ClientViewController {
         return  "clients/form";
     }
 
-     // /POST /clients/{id} TREBA IMPLEMENTIRATI
+     // /POST /clients/{id}
     @PostMapping("/{id}")
     public String update(
             @PathVariable Integer id,
@@ -103,5 +103,7 @@ public class ClientViewController {
         ra.addFlashAttribute("message", "Klijent obrisan.");
         return "redirect:/clients";
     }
+
+
 }
 

@@ -132,7 +132,7 @@ public class CarViewController {
         return "redirect:/cars";
     }
 
-     @PostMapping("/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String delete(@PathVariable Integer id, RedirectAttributes ra) {
         autoRepository.deleteById(id);
         ra.addFlashAttribute("message", "Car deleted.");
