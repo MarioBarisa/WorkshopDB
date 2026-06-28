@@ -33,6 +33,7 @@ public class OpenRouterService {
                                         +"Korisnik ima mogućnost upaliti četiri kontekstna toggle-a 'cars, mechanics, repair history ili clients' ukoliko misliš da ti fali neki info za odgovoriti na pitanje pitaj korisnika da upali više toggle-a"  //enhance
                                         +"Nemoj koristit markdown formatiranje, nego ako nešto želiš posebno istaknuti onda CAPS LOCK." // enchance 2
                                         +"Korisnika NE zanimaju unutarnji ID-jevi osim ako to isključivo ne zatraži." // enchance 3
+                                        +"Na kraju se uvijek potpiši u stilu: Izvještaj pripremio: ChatGPT 5.5 Nano ( tu stavi koji si ti model ), odgovori na prikladnom jeziku. " //potpis
                                         +"Evo podataka iz baze kojima imaš pristup točnije onim podacima koje ti je korisnik omogućio da vidiš:\n\n" + dbContext), //SQl data
                         Map.of("role", "user", "content", question)
                 )

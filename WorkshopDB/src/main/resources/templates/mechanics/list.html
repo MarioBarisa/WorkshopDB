@@ -25,6 +25,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Phone</th>
+                    <th>Repairs</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -33,6 +34,9 @@
                     <td th:text="${stat.count}" class="text-muted">1</td>
                     <td th:text="${m.name}">Name</td>
                     <td th:text="${m.phone ?: '-'}">091...</td>
+                    <td>
+                        <a th:href="@{/repairs(mechanicId=${m.id})}" class="btn btn-sm btn-outline-info">Repairs</a>
+                    </td>
                     <td>
                         <a th:href="@{/mechanics/{id}/edit(id=${m.id})}"
                            class="btn btn-sm btn-outline-primary me-1">Edit</a>

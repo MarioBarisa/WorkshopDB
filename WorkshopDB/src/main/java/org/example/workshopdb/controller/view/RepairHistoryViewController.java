@@ -31,8 +31,21 @@ public class RepairHistoryViewController {
     }
 
     @GetMapping
-    public String list(Model model){
-        List<RepairHistory> repairs = repairHistoryRepository.findAll();
+    public String list(Model model,
+                       @RequestParam(required = false) Integer mechanicId,
+                       @RequestParam(required = false) Integer autoId){
+
+        List<RepairHistory> repairs;
+        if(mechanicId!=null){
+            repairs = repairHistoryRepository.findByMechanicId(mechanicId);
+            model.addAttribute("filterLabel", "Mechanic: " + mechanicRepository.findById(mechanicId).get().getName());
+        } else if (autoId!=null) {
+            repairs = repairHistoryRepository.findByAuto_Id(autoId);
+            model.addAttribute("filterLabel","Car: "+ autoRepository.findById(autoId).get().getModel());
+
+        } else{
+            repairs = repairHistoryRepository.findAll();
+        }
         model.addAttribute("repairs", repairs);
         return "repairhistory/list";
     }
