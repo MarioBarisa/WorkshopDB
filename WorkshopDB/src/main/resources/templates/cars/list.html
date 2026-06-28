@@ -56,7 +56,7 @@
                     <td><a th:href="@{/repairs(autoId=${auto.id})}" class="btn btn-sm btn-outline-info">Repairs</a></td>
                     <td th:text="${auto.mileage ?: '-'}">10000</td>
                     <td>
-                        <a th:href="@{/clients/{id}(id=${auto.id})}"
+                        <a th:href="@{/clients/{id}(id=${auto.getClient().getId()})}"
                            th:text="${auto.client.name}">
                         </a>
                     </td>
