@@ -1,3 +1,14 @@
 .table th { font-size: 0.85rem; text-transform: uppercase; letter-spacing: .05em; }
 .btn-sm { font-size: 0.8rem; }
 .navbar-brand { font-size: 1.1rem; }
+
+@media (max-width: 991.98px) {
+    .navbar-nav .nav-link {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+}
+
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; }
+footer { margin-top: auto; }
