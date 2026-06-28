@@ -51,6 +51,7 @@
                         <th>Model</th>
                         <th>VIN</th>
                         <th>Year</th>
+                        <th>Repair History</th>
                         <th>Mileage</th>
                     </tr>
                 </thead>
@@ -59,7 +60,8 @@
                         <td th:text="${auto.make}">Make</td>
                         <td th:text="${auto.model}">Model</td>
                         <td th:text="${auto.vin}">VIN</td>
-                        <td th:text="${auto.year}">2024</td>
+                         <td th:text="${auto.year}">2024</td>
+                        <td><a th:href="@{/repairs(autoId=${auto.id})}" class="text-primary">Repairs</a></td>
                         <td th:text="${auto.mileage ?: '-'}">10000</td>
                     </tr>
                 </tbody>

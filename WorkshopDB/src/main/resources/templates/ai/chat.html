@@ -51,7 +51,7 @@
                         <label class="form-label fw-semibold">Your question</label>
                         <textarea name="question" rows="3"
                                   class="form-control"
-                                  placeholder="Upiši pitanje..."
+                                  placeholder="Enter your question..."
                                   th:text="${question}"></textarea>
                     </div>
                     <button type="submit" class="btn bg-primary-subtle">Send →</button>
@@ -60,11 +60,11 @@
                 <!-- Odgovor — prikaže se samo kada postoji -->
                 <div th:if="${answer != null and !#strings.isEmpty(answer)}"
                      class="mt-4 p-3 bg-white border rounded">
-                    <p class="text-primary fw-bold "> Ai CAN MAKE MISTAKES, always double check!  </p>
+                    <p class="text-primary fw-bold "> Ai can make mistakes, always double check! </p>
                     <h6 class="text-muted mb-2">Answer:</h6>
-                    <p th:text="${answer}" class="mb-0"></p>
+                    <p th:utext="${answer}" class="markdown-body mb-0"></p>
                 </div>
-
+            </form>
         </div>
     </div>
 </div>
