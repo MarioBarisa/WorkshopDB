@@ -48,4 +48,3 @@ INSERT INTO WorkshopDB.repair_history (auto_id, mechanic_id, date, title, about,
 ```
 
 
-
